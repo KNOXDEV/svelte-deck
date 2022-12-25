@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 
-const MAX_SLIDES = 10;
+const MAX_SLIDES = 6;
 
 export const load: PageServerLoad = ({ params }) => {
 	const slideNumber = parseInt(params.slide);

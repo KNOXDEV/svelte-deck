@@ -1,29 +1,49 @@
 <script lang="ts">
     import type {PageData} from './$types';
     import {goto} from "$app/navigation";
-    export let data: PageData
+    import {fly} from "svelte/transition";
 
-    function slideLeft() {
+    export let data: PageData
+    let goingForward = true;
+
+    const slideAnimation = (node, left) => fly(node, {
+        x: 1000 * (left ? -1 : 1), duration: 1000
+    });
+
+    const slideIn = (node) => slideAnimation(node, !goingForward);
+    const slideOut = (node) => slideAnimation(node, goingForward);
+
+    function nextSlide() {
+        goingForward = false;
         const newSlideIndex = Math.max(1, data.currentSlideIndex - 1);
         goto(`/${newSlideIndex}`);
     }
 
-    function slideRight() {
+    function previousSlide() {
+        goingForward = true;
         const newSlideIndex = Math.min(data.totalSlides, data.currentSlideIndex + 1);
         goto(`/${newSlideIndex}`);
     }
 
     function onKeyDown(event) {
         if (event.keyCode == 37) {
-            return slideLeft();
+            return nextSlide();
         }
-        if(event.keyCode == 39) {
-            return slideRight();
+        if (event.keyCode == 39) {
+            return previousSlide();
         }
     }
 
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window on:keydown|preventDefault={onKeyDown}/>
 
-<h1>Welcome to slide number {data.currentSlideIndex}</h1>
+<div class="h-auto w-auto overflow-hidden">
+    {#key data.currentSlideIndex}
+        <div in:slideIn out:slideOut
+             class="top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2 justify-items-center grid">
+            <h1 class="text-5xl mb-5">{data.currentSlide.title}</h1>
+            <p class="">{data.currentSlide.content}</p>
+        </div>
+    {/key}
+</div>
