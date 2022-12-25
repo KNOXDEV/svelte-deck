@@ -1,9 +1,10 @@
 import type { PageLoad } from './$types';
+
 export const load: PageLoad = ({ data }) => {
 	const slides = [
 		{
-			title: 'This is a big slide',
-			content: 'description text here'
+			transition: 'fly',
+			component: ''
 		},
 		{
 			title: 'This is a big slide 2',

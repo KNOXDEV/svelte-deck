@@ -2,6 +2,7 @@
     import type {PageData} from './$types';
     import {goto} from "$app/navigation";
     import {fly} from "svelte/transition";
+    import Example from "$lib/slides/example.svx";
 
     export let data: PageData
     let goingForward = true;
@@ -42,8 +43,7 @@
     {#key data.currentSlideIndex}
         <div in:slideIn out:slideOut
              class="top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2 justify-items-center grid">
-            <h1 class="text-5xl mb-5">{data.currentSlide.title}</h1>
-            <p class="">{data.currentSlide.content}</p>
+            <Example/>
         </div>
     {/key}
 </div>
