@@ -2,10 +2,12 @@
     import type {PageData} from './$types';
     import {goto} from "$app/navigation";
     import {fly} from "svelte/transition";
-    import Example from "$lib/slides/example.svx";
+    import { slides } from "$lib/slides/Presentation.svelte";
 
     export let data: PageData
     let goingForward = true;
+
+    $: currentSlide = slides[data.currentSlideIndex - 1];
 
     const slideAnimation = (node, left) => fly(node, {
         x: 1000 * (left ? -1 : 1), duration: 1000
@@ -42,8 +44,8 @@
 <div class="h-auto w-auto overflow-hidden">
     {#key data.currentSlideIndex}
         <div in:slideIn out:slideOut
-             class="top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2 justify-items-center grid">
-            <Example/>
+             class="top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2 w-full">
+            <svelte:component this={currentSlide}/>
         </div>
     {/key}
 </div>
