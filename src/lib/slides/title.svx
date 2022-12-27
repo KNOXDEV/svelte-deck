@@ -1,0 +1,6 @@
+---
+transition: fly
+---
+# how to attack networks
+
+this is a presentation about how to properly attack networks

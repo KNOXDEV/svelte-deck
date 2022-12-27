@@ -1,13 +1,33 @@
 <script context="module">
     import h1 from "./h1.svelte";
+    import h3 from "./h3.svelte";
     import p from "./p.svelte";
-    export { h1, p };
+    export { h1, h3, p };
 </script>
 
 <style>
-    .svx-layout :global(*):not(.math *) {
+    .svx-layout :global(*):not(.math *, code, code *) {
         font-family: "DM Sans", sans-serif;
         color: #333;
+    }
+
+    .svx-layout :global(code) {
+        counter-reset: step;
+        counter-increment: step 0;
+
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 1.5rem;
+    }
+
+    .svx-layout :global(code .line)::before {
+        display: inline-block;
+        content: counter(step);
+        counter-increment: step;
+        width: 1.5em;
+        margin-right: 1em;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: #AAA;
     }
 </style>
 

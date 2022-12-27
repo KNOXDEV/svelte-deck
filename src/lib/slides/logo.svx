@@ -1,6 +1,6 @@
 
-![acm cyber logo](/logo.png)
+<img src="/logo.png" class="w-400" />
 
 # ACM Cyber
 
-## ucsd's largest cybersecurity org
+### ucsd's largest cybersecurity org

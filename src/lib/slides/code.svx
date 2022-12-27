@@ -1,0 +1,10 @@
+
+### this is an example of a code block
+
+```js
+let x = 5;
+let y = 10;
+let func = (z) => 10 * x + y * z;
+// this is a comment
+throw Error("take me, sweet release");
+```

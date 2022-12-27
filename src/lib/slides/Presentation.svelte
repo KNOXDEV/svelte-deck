@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
-    import Example from "./example.svx";
+    import Title from "./title.svx";
     import Logo from "./logo.svx";
+    import Code from "./code.svx";
 
     export const slides = [
-        Example,
-        Logo
+        Title,
+        Logo,
+        Code
     ];
 </script>
